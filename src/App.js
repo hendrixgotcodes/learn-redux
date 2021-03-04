@@ -1,23 +1,33 @@
-import logo from './logo.svg';
 import './App.css';
+import store from './store';
+import * as actions from './actions';
 
 function App() {
+
+  let state= "imm"
+
+  store.subscribe(()=>{
+
+    console.log(store.getState());
+
+      state = "state changed!"
+
+  })
+
+  store.dispatch(actions.bugAdded())
+
+  // store.dispatch(actions.bugRemoved())
+
+  store.dispatch(actions.bugResolved(1))
+
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+
+      <h1>React</h1>
+
+      <span>{state}</span>
+      
     </div>
   );
 }
