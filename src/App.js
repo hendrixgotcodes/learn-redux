@@ -1,6 +1,6 @@
 import './App.css';
 import configureStore from './store/configureStore';
-import * as actions from './store/bugs';
+import {bugAdded, bugRemoved, bugResolved, getUnresolvedBugs} from './store/bugs';
 import * as projectActions from './store/projects';
 
 const store = configureStore();
@@ -9,11 +9,7 @@ function App() {
 
   let state= "imm"
 
-  console.log(store);
-
   store.subscribe(()=>{
-
-    console.log(store.getState());
 
       state = "state changed!"
 
@@ -23,17 +19,15 @@ function App() {
 
   // store
 
-  store.dispatch(actions.bugAdded({description: "bug1"}))
-  store.dispatch(actions.bugAdded({description: "bug2"}))
-  store.dispatch(actions.bugAdded({description: "bug3"}))
+  store.dispatch(bugAdded({description: "bug1"}))
+  store.dispatch(bugAdded({description: "bug2"}))
+  getUnresolvedBugs(store.getState())
 
-
-
-  // store.dispatch(actions.bugRemoved())
-
-  store.dispatch(actions.bugResolved({id: 1}))
   store.dispatch(projectActions.projectAdded({name: "project1"}))
   store.dispatch(projectActions.projectAdded({name: "project2"}))
+
+  store.dispatch(bugResolved({id:2}))
+
 
 
 
