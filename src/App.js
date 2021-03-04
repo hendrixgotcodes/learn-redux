@@ -1,6 +1,6 @@
 import './App.css';
-import store from './store';
-import * as actions from './actions';
+import store from './store/configureStore';
+import * as actions from './store/bugs';
 
 function App() {
 
