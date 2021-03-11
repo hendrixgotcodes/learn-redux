@@ -15,18 +15,7 @@ function App() {
 
   })
 
-  
-
-  // store
-
-  store.dispatch(bugAdded({description: "bug1"}))
-  store.dispatch(bugAdded({description: "bug2"}))
-  getUnresolvedBugs(store.getState())
-
-  store.dispatch(projectActions.projectAdded({name: "project1"}))
-  store.dispatch(projectActions.projectAdded({name: "project2"}))
-
-  store.dispatch(bugResolved({id:2}))
+  store.dispatch({type: "bugsRecieved", bugs: [1,2,3]})
 
 
 
